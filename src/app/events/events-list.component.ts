@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
  
-
+declare let toastr;
 @Component({
   selector: 'events-list',
   templateUrl: './events-list.component.html',
@@ -17,6 +18,10 @@ export class EventsListComponent implements OnInit {
   ngOnInit()  {
     this.events = this.eventService.getEvents();
     console.log("Hello"+ this.events.length)
+  }
+
+  handleThunbnailClick(eventName){
+    toastr.success(eventName);
   }
 
 }
