@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { ToastrService } from '../services/toastr.service';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
+import { map } from 'rxjs/operators'
+import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
  
 
 @Component({
@@ -11,13 +12,18 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
 })
 export class EventsListComponent implements OnInit {
 
-  events: any[];
+  events: any;
 
-  constructor(private eventService: EventService, private toastr: ToastrService) {
+  constructor(private eventService: EventService, 
+    private toastr: ToastrService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit()  {
-    this.events = this.eventService.getEvents();
+     //this.eventService.getEvents().subscribe(events=>{this.events=events});
+     // get the data from the EventList resolver route:
+     this.events = this.route.snapshot.data['events'];
+     // Here the 'events' is matching the event in the route of 
     console.log("Hello"+ this.events.length)
   }
 
