@@ -8,8 +8,10 @@ import { EventRouteActivatorService } from './services/event-route-activator.ser
 
 export const appRoutes : Routes  =[
     {path: 'events', component: EventsListComponent },
-    {path: 'events/new', component: CreateEventComponent },
-    {path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivatorService] },
+    {path: 'events/new', component: CreateEventComponent,
+        canDeactivate: ['canDeactivateCreateEvent'] },
+    {path: 'events/:id', component: EventDetailsComponent, 
+        canActivate: [EventRouteActivatorService] },
     {path: '404', component: Error404Component },
     {path: '', redirectTo: '/events', pathMatch: 'full' }
 ]
