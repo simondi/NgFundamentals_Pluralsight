@@ -3,6 +3,7 @@ import { EventService } from '../services/event.service';
 import { ToastrService } from '../services/toastr.service';
 import { map } from 'rxjs/operators'
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { IEvent } from '../models/index'
  
 
 @Component({
@@ -12,7 +13,7 @@ import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 })
 export class EventsListComponent implements OnInit {
 
-  events: any;
+  events: IEvent[];
 
   constructor(private eventService: EventService, 
     private toastr: ToastrService,
