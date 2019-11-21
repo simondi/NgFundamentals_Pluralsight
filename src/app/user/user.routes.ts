@@ -1,5 +1,4 @@
-import { ProfileComponent } from './profile/profile.component';
- 
+import { ProfileComponent } from './index';
 
 export const userRoutes =[
     {path: 'profile', component: ProfileComponent}
