@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/error404/error404.component';
 import { EventRouteActivatorService  } from './services/event-route-activator.service';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { EventRouteActivatorService  } from './services/event-route-activator.se
     NavBarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    ProfileComponent
   ],
   providers :[
     EventService, 
