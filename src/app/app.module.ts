@@ -22,12 +22,15 @@ import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './app.router'
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/error404/error404.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     EventsAppComponent,

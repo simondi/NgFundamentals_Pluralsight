@@ -5,11 +5,12 @@ import {
     EventListResolverService } 
 from './services/index';
 
+
 import {
     EventsListComponent,
     EventThumbnailComponent,
     EventDetailsComponent,
-    CreateEventComponent 
+    CreateEventComponent,
 } from './events/index'
 
 export const appRoutes : Routes  =[
