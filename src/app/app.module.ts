@@ -14,7 +14,8 @@ import {
   EventListResolverService,
   EventService,
   ToastrService,
-  EventRouteActivatorService
+  EventRouteActivatorService,
+  AuthService
 } from './services/index'
 
 import { NavBarComponent } from './nav/navbar.component';
@@ -42,7 +43,8 @@ import { Error404Component } from './errors/error404/error404.component';
     ToastrService,
     EventRouteActivatorService,
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
-    EventListResolverService
+    EventListResolverService,
+    AuthService
   ],
   bootstrap: [EventsAppComponent]
 })
