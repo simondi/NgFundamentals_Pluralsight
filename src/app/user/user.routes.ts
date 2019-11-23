@@ -3,7 +3,9 @@ import {
     LoginComponent,
  } from './index';
 
-export const userRoutes =[
+ import { Routes } from '@angular/router';
+
+export const userRoutes : Routes=[
     {path: 'profile', component: ProfileComponent},
     {path: 'login', component: LoginComponent}
 ]

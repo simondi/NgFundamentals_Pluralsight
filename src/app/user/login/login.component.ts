@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   login(formValues) {
     console.log(formValues);
     this.authService.loginUser(formValues.userName, formValues.password);
-    this.router.navigate(['events']);
+    this.router.navigate(['user/profile']);
   }
   cancel(){
     this.router.navigate(['events']);
