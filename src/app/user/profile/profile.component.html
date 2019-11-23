@@ -1,7 +1,7 @@
 <h1>Login</h1>
 <hr>
 <div class="col-md-4">
-  <form [formGroup] = "profileForm" autocomplete="off">
+  <form [formGroup] = "profileForm"  (ngSubmit)="saveProfile(profileForm.values)" autocomplete="off">
     <div class="form-group" >
       <label for="firstName">First Name:</label>
       <input formControlName="firstName"id="userName" type="text" class="form-control" placeholder="User Name..." />
@@ -9,7 +9,7 @@
 
     <div class="form-group" >
         <label for="lastName">Last Name:</label>
-        <input formControlName="lasttName" id="lastName" type="text" class="form-control" placeholder="Last Name..." />
+        <input formControlName="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name..." />
       </div>
 
 
