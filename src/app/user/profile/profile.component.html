@@ -1,7 +1,7 @@
-<h1>Login</h1>
+<h1>User Profile</h1>
 <hr>
 <div class="col-md-4">
-  <form [formGroup] = "profileForm"  (ngSubmit)="saveProfile(profileForm)" autocomplete="off">
+  <form *ngIf="authenticated" [formGroup] = "profileForm"  (ngSubmit)="saveProfile(profileForm)" autocomplete="off">
     <div class="form-group" >
       <label for="firstName">First Name:</label>
       <input formControlName="firstName"id="firstName" type="text" class="form-control" placeholder="First Name..." />

@@ -12,14 +12,13 @@ export class ProfileComponent implements OnInit {
   profileForm : FormGroup;
   firstName : FormControl;
   lastName : FormControl;
- 
+  authenticated: boolean = true;
 
   constructor(private router: Router, private authService: AuthService ) { }
 
   ngOnInit() {
-    if (!this.authService.currentUser){
-      this.router.navigate(['user/login']);
-    }
+    this.authenticated =!!this.authService.currentUser;
+
     this.firstName = new FormControl(this.authService.currentUser.firstName);
     this.lastName = new FormControl(this.authService.currentUser.lastName);
     this.profileForm = new FormGroup({
