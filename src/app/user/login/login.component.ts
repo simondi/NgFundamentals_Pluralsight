@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  username;
+  userName;
   password;
   mouseOverLogin : boolean;
   
@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(formValues) {
-    console.log(formValues);
-    this.authService.loginUser(formValues.userName, formValues.password);
+  login(formValue) {
+    console.log('Hello, '+ formValue.userName + ' '+  formValue.password);
+    this.authService.loginUser(formValue.userName, formValue.password);
     this.router.navigate(['user/profile']);
   }
   cancel(){

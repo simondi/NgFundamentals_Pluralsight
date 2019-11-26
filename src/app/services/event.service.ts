@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { fromEventPattern } from 'rxjs';
 import { IEvent } from '../models/index';
+import { EventsAppComponent } from '../events-app.component';
 
 const events : IEvent[] = [
   {
@@ -322,6 +323,12 @@ export class EventService {
     }, 100);
     
     return subject;
+  }
+
+  saveEvent(event){
+    event.id = 999;
+    event.session = [];
+    events.push(event);
   }
 
   getEvent(id: number) : IEvent {

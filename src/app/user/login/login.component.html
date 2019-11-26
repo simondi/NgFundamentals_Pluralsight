@@ -7,7 +7,7 @@
       <label for="userName">User Name:</label>
       <em *ngIf="loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched || mouseOverLogin)">Required</em>
       <input (ngModel)="userName" id="userName" name="userName" id="userName"  required="true"
-        type="test" class="form-control" placeholder="User Name..." />
+        type="text" class="form-control" placeholder="User Name..." />
     </div>
     <div class="form-group" >
       <label for="password">Password:</label>
@@ -17,7 +17,7 @@
     </div>
      
     <span (mouseenter)="mouseOverLogin=true" (mouseleave)="mouseOverLogin=false"> 
-    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)=login(loginForm)>Login</button>
+    <button type="button" class="btn btn-primary" [disabled]="loginForm.invalid" (click)=login(loginForm.value)>Login</button>
     </span> 
     <button type="button" class="btn btn-default" (click)=cancel()>Cancel</button>
   </form>

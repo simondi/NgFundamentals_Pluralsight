@@ -5,7 +5,6 @@ import {
     EventListResolverService } 
 from './services/index';
 
-
 import {
     EventsListComponent,
     EventThumbnailComponent,

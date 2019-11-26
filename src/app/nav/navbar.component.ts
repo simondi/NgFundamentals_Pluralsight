@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services'
+import { Router } from '@angular/router';
+import { IUser } from '../models';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,7 +11,17 @@ import {AuthService} from '../services'
 })
 
 export class NavBarComponent implements OnInit {
-  constructor(private authservice: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() { }
+
+  ngOnInit() { 
+
+
+  }
+
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['user/login']);
+  }
 }

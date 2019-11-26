@@ -1,10 +1,10 @@
 <h1>Login</h1>
 <hr>
 <div class="col-md-4">
-  <form [formGroup] = "profileForm"  (ngSubmit)="saveProfile(profileForm.values)" autocomplete="off">
+  <form [formGroup] = "profileForm"  (ngSubmit)="saveProfile(profileForm)" autocomplete="off">
     <div class="form-group" >
       <label for="firstName">First Name:</label>
-      <input formControlName="firstName"id="userName" type="text" class="form-control" placeholder="User Name..." />
+      <input formControlName="firstName"id="firstName" type="text" class="form-control" placeholder="First Name..." />
     </div>
 
     <div class="form-group" >
@@ -13,7 +13,7 @@
       </div>
 
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-primary" (click)="saveProfile(profileForm)">Save</button>
     <button type="button" class="btn btn-default" (click)= "cancel()">Cancel</button>
   </form>
 </div>
