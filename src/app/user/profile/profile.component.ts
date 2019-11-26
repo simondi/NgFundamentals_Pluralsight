@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormControl, FormGroup, Validator, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService} from '../../services'
 import { Router } from '@angular/router';
 
@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authenticated =!!this.authService.currentUser;
 
-    this.firstName = new FormControl(this.authService.currentUser.firstName);
-    this.lastName = new FormControl(this.authService.currentUser.lastName);
+    this.firstName = new FormControl(this.authService.currentUser.firstName, Validators.required);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
     this.profileForm = new FormGroup({
       firstName : this.firstName,
       lastName: this.lastName
