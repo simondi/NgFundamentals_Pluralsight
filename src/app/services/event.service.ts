@@ -334,5 +334,10 @@ export class EventService {
   getEvent(id: number) : IEvent {
     return events.find(event=>event.id===id);
   }
+
+  updateEvent(event) {
+    let index = events.findIndex(x=>x.id = event.id)
+    events[index] = event;
+  }
 }
 
