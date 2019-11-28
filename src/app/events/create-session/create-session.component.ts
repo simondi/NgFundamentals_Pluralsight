@@ -1,6 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ISession } from '../../models/index';
-import { EventEmitter } from 'events';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'create-session',
@@ -9,23 +9,40 @@ import { EventEmitter } from 'events';
 })
 export class CreateSessionComponent implements OnInit {
   @Output() saveNewSession = new EventEmitter();
+  @Output() cancelAddSession = new EventEmitter();
+
+  newSessionForm = new FormGroup({
+    name: new FormControl,
+    presenter: new FormControl('',Validators.required),
+    duration: new FormControl('',Validators.required),
+    level: new FormControl('',Validators.required),
+    abstract: new FormControl('',Validators.required)
+  })
+  
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
-  saveSession(formValues) {
+  saveSession() {
     let session: ISession = {
       id: undefined,
-      name: formValues.name,
-      duration: +formValues.duration,
-      level: formValues.level,
-      presenter: formValues.resenter,
-      abstract: formValues.abstract,
+      name: this.newSessionForm.value.name,
+      duration: +this.newSessionForm.value.duration,
+      level: this.newSessionForm.value.level,
+      presenter: this.newSessionForm.value.resenter,
+      abstract: this.newSessionForm.value.abstract,
       voters:[]
     }
+    
+    console.log(session);
     this.saveNewSession.emit(session);
+  }
+
+  cancel() {
+    this.cancelAddSession.emit;
   }
 
 }
