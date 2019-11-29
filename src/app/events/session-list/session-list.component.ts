@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISession } from '../../models/index';
+import { ISession} from '../../models/index';
 
 @Component({
   selector: 'session-list',

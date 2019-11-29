@@ -17,7 +17,8 @@ import {
   EventService,
   ToastrService,
   EventRouteActivatorService,
-  AuthService
+  AuthService,
+  DurationPipe
 } from './services/index'
 
 import { NavBarComponent } from './nav/navbar.component';
@@ -43,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateEventComponent,
     Error404Component,
     SessionListComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    DurationPipe
   ],
   providers :[
     EventService, 
