@@ -11,5 +11,12 @@ a {
 }
 
 .buttonRow {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+}
+
+.btn-default {
+    margin-right: 5px;
+    background-color: rgb(56, 132, 194);
+    color: black;
+    font: bold;
 }
