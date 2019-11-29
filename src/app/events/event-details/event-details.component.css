@@ -9,3 +9,7 @@
 a { 
     cursor:pointer;
 }
+
+.buttonRow {
+    margin-bottom: 5px;
+}

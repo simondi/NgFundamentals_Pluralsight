@@ -12,6 +12,7 @@ export class EventDetailsComponent implements OnInit {
   eventId: number;
   event: IEvent;
   addSessionMode: boolean;
+  filterBy: string='all';
 
   constructor(private eventService : EventService, private route: ActivatedRoute) { }
 

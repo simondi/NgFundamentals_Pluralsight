@@ -21,9 +21,16 @@
       </address>
     </div>
   </div>
-  <div class="row">
+  <div class="row buttonRow">
     <div class="col-md-2">
       <h1 style="margin: 0;"> Sessions</h1>
+    </div>
+
+    <div class="col-md-7">
+      <button class ="btn btn-default" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
+      <button class ="btn btn-default" [class.active]="filterBy==='beginner'" (click)="filterBy='beginner'">Beginner</button>
+      <button class ="btn btn-default" [class.active]="filterBy==='intermediate'" (click)="filterBy='intermediate'">Intermediate</button>
+      <button class ="btn btn-default" [class.active]="filterBy==='advanced'" (click)="filterBy='advanced'">Advanced</button>
     </div>
 
     <div class="col-md-2">
@@ -31,7 +38,7 @@
     </div>
   </div>
 
-  <session-list *ngIf="!addSessionMode" [sessions]=event?.sessions></session-list>
+  <session-list [filterBy]="filterBy" *ngIf="!addSessionMode" [sessions]=event?.sessions></session-list>
   <create-session *ngIf="addSessionMode" (saveNewSession)="saveNewSession($event)"
   (cancelAddSession)="cancelAddSession()"></create-session>
 </div>
