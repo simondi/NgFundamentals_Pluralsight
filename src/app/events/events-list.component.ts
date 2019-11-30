@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../services/event.service';
-import { ToastrService } from '../services/toastr.service';
+import { EventService, ToastrService } from '../services/index';
 import { map } from 'rxjs/operators'
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { IEvent } from '../models/index'
@@ -29,7 +28,7 @@ export class EventsListComponent implements OnInit {
   }
 
   handleThunbnailClick(eventName){
-    this.toastr.success(eventName);
+    this.toastr.success("the event name is: "+eventName);
   }
 
 }

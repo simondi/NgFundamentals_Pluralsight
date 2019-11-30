@@ -16,6 +16,7 @@ import {
   EventListResolverService,
   EventService,
   ToastrService,
+  TOASTR_TOKEN, Toastr,
   EventRouteActivatorService,
   AuthService,
   DurationPipe
@@ -27,6 +28,7 @@ import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/error404/error404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+declare let toastr: Toastr;  // for TOASTR-TOKEN
 
 @NgModule({
   imports: [
@@ -52,6 +54,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToastrService,
     EventRouteActivatorService,
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+    {provide: TOASTR_TOKEN, useValue: toastr },
     EventListResolverService,
     AuthService
   ],
