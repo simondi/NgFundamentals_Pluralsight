@@ -1,8 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { fromEventPattern } from 'rxjs';
 import { IEvent, ISession } from '../models/index';
 import { EventsAppComponent } from '../events-app.component';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 const events : IEvent[] = [
   {
@@ -316,14 +318,20 @@ const events : IEvent[] = [
 })
 export class EventService {
 
-  getEvents() : Observable<IEvent[]> {
-    let subject = new Subject<IEvent[]>();
-    setTimeout(() => {
-      subject.next(events); subject.complete();
-    }, 100);
-    
-    return subject;
+  constructor(private http: HttpClient) {
+
   }
+  getEvents() : Observable<IEvent[]> {
+    // let subject = new Subject<IEvent[]>();
+    // setTimeout(() => {
+    //   subject.next(events); subject.complete();
+    // }, 100);
+    
+    // return subject;
+    return this.http.get<IEvent[]>('api/events')
+    .pipe(catchError(this.handleError<IEvent[]>('getEvent', [])));
+  }
+
 
   saveEvent(event){
     event.id = 999;
@@ -331,8 +339,10 @@ export class EventService {
     events.push(event);
   }
 
-  getEvent(id: number) : IEvent {
-    return events.find(event=>event.id===id);
+  getEvent(id: number) : Observable<IEvent> {
+    // return events.find(event=>event.id===id);
+    return this.http.get<IEvent>('api/events/'+id)
+    .pipe(catchError(this.handleError<IEvent>('getEvent')));
   }
 
   updateEvent(event) {
@@ -359,5 +369,14 @@ export class EventService {
     }, 100);
     return emitter;
   }
+
+  private handleError<T> (operation ='operation', result?: T) {
+    return(error: any): Observable<T> => {
+      console.log("Hello to get Event");
+      console.log(error);
+      return of(result as T);
+    }
+  }
+
 }
 

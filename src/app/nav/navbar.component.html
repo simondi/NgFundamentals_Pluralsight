@@ -40,10 +40,18 @@
         <div class="form-group">
           <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="form-control" placeholder="Search Sessions" >
         </div>
-        <button class="btn btn-default" (click)="searchSessions(searchTerm)" >
+        <button class="btn btn-default" modal-trigger >
           Search
         </button>
       </form>
     </div>
   </div>
 </div>
+
+<simple-modal title="matching Sessions">
+  <div class="list-group">
+      <a class="list-group-item" *ngFor="let sessoin of founSessions">
+        [routerLink] = "['/events', sessoin.id]" > {{session.name}}
+      </a>
+  </div>
+</simple-modal>

@@ -14,6 +14,6 @@ export class EventListResolverService implements Resolve<any> {
 
   resolve() { 
     // Here we use map to return observable in stead of using subscribe to return a subscription.
-    return this.eventService.getEvents().pipe(map(events=>events));
+    return this.eventService.getEvents();
   }
 }
