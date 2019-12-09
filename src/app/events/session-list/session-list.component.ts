@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ISession} from '../../models/index';
+import { AuthService, VoterService }  from '../../services/index';
+import {  } from '../../user/index';
 
 @Component({
   selector: 'session-list',
@@ -10,10 +12,11 @@ export class SessionListComponent implements OnInit {
   @Input() sessions: ISession[];
   @Input() filterBy: string; 
   @Input() sortBy: string; 
+  @Input() eventId: number; 
 
   visibleSessions: ISession[]=[];
 
-  constructor() { }
+  constructor(private voterService: VoterService, private auth: AuthService ) { }
 
   ngOnInit() {
   }
@@ -36,6 +39,22 @@ export class SessionListComponent implements OnInit {
     }
   }
 
+  toggleVoter(session: ISession){
+    if (this.userHasVoted(session))
+    {
+      this.voterService.deleteVoter(session, this.auth.currentUser.userName)
+    } else {
+      this.voterService.addVoter(this.eventId, session, this.auth.currentUser.userName);
+    }
+    if (this.sortBy==='voters')
+    {
+      this.visibleSessions.sort(sorByVoteDesc);
+    }
+  }
+
+  userHasVoted(session: ISession) : boolean  {
+    return this.voterService.userHasVoted(session, this.auth.currentUser.userName);
+  }
 
 }
 

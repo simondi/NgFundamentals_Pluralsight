@@ -3,7 +3,7 @@ import { Subject, Observable, of } from 'rxjs';
 import { fromEventPattern } from 'rxjs';
 import { IEvent, ISession } from '../models/index';
 import { EventsAppComponent } from '../events-app.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 const events : IEvent[] = [
@@ -329,14 +329,7 @@ export class EventService {
     
     // return subject;
     return this.http.get<IEvent[]>('api/events')
-    .pipe(catchError(this.handleError<IEvent[]>('getEvent', [])));
-  }
-
-
-  saveEvent(event){
-    event.id = 999;
-    event.session = [];
-    events.push(event);
+     .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
   }
 
   getEvent(id: number) : Observable<IEvent> {
@@ -345,29 +338,20 @@ export class EventService {
     .pipe(catchError(this.handleError<IEvent>('getEvent')));
   }
 
+  saveEvent(event) {
+    let options ={ headers: new HttpHeaders({'Content_Type': 'application/json'})}
+    return this.http.post<IEvent>('/api/events', event,  options)
+    .pipe(catchError(this.handleError<IEvent>('saveEvent')));
+  }
+
   updateEvent(event) {
     let index = events.findIndex(x=>x.id = event.id)
     events[index] = event;
   }
 
-  searchSessions(searchTerm: string) {
-    var term = searchTerm.toLowerCase();
-    var results: ISession[]=[];
-
-    events.forEach(event => {
-      var matchingSessions = event.sessions.filter(session =>
-        session.name.toLowerCase().indexOf(term) > -1 );
-      matchingSessions  = matchingSessions.map((session:any)=>{
-        session.id = event.id;
-        return session;
-      })
-      results = results.concat(matchingSessions);
-    })
-    var emitter = new EventEmitter(true);
-    setTimeout(()=>{
-      emitter.emit(results)
-    }, 100);
-    return emitter;
+  searchSessions(searchTerm: string): Observable<ISession[]> {
+    return this.http.get<ISession[]>('/api/sessions/search?search='+searchTerm)
+    .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
   }
 
   private handleError<T> (operation ='operation', result?: T) {

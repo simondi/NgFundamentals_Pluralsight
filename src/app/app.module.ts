@@ -14,11 +14,12 @@ import {
 
 import {
   EventListResolverService,
+  EventResolverService,
   EventService,
   ToastrService,
   TOASTR_TOKEN, Toastr,
   JQ_TOKEN,
-  EventRouteActivatorService,
+ // EventRouteActivatorService,
   AuthService,
   DurationPipe
 } from './services/index'
@@ -60,11 +61,12 @@ let jQuery = window['$'];
   providers :[
     EventService, 
     ToastrService,
-    EventRouteActivatorService,
+    //EventRouteActivatorService,
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     {provide: TOASTR_TOKEN, useValue: toastr },
     {provide: JQ_TOKEN, useValue: jQuery },
     EventListResolverService,
+    EventResolverService,
     AuthService
   ],
   bootstrap: [EventsAppComponent]
