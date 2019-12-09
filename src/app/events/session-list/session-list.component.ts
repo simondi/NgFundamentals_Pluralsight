@@ -42,7 +42,7 @@ export class SessionListComponent implements OnInit {
   toggleVoter(session: ISession){
     if (this.userHasVoted(session))
     {
-      this.voterService.deleteVoter(session, this.auth.currentUser.userName)
+      this.voterService.deleteVoter(this.eventId, session, this.auth.currentUser.userName)
     } else {
       this.voterService.addVoter(this.eventId, session, this.auth.currentUser.userName);
     }

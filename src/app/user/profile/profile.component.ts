@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormsModule, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, TOASTR_TOKEN, Toastr} from '../../services'
 import { Router } from '@angular/router';
+import { subscribeOn } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -32,6 +33,13 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProfile(form){
+    if (this.profileForm.valid)
+    {
+      this.authService.updateCurrentUser(form.value.firstName, form.value.lastName)
+        .subscribe( () => {
+          this.toastr.success('profile Saved');
+        })
+    }
     this.authService.updateCurrentUser(form.value.firstName, form.value.lastName);
     this.toastr.success("Profile Saved");
   }

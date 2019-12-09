@@ -344,13 +344,13 @@ export class EventService {
     .pipe(catchError(this.handleError<IEvent>('saveEvent')));
   }
 
-  updateEvent(event) {
-    let index = events.findIndex(x=>x.id = event.id)
-    events[index] = event;
-  }
+  // updateEvent(event) {
+  //   let index = events.findIndex(x=>x.id = event.id)
+  //   events[index] = event;
+  // }
 
   searchSessions(searchTerm: string): Observable<ISession[]> {
-    return this.http.get<ISession[]>('/api/sessions/search?search='+searchTerm)
+    return this.http.get<ISession[]>('/api/sessions/search?search=' + searchTerm)
     .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
   }
 

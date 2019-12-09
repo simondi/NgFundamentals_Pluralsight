@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   userName;
   password;
   mouseOverLogin : boolean;
+  loginInvalid : boolean = false;
   
   constructor(private authService: AuthService, 
     private router: Router,
@@ -22,8 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(formValue) {
-    console.log('Hello, '+ formValue.userName + ' '+  formValue.password);
-    this.authService.loginUser(formValue.userName, formValue.password);
+    this.authService.loginUser(formValue.userName, formValue.password)
+      .subscribe(response => {
+        if (!response) {
+          this. loginInvalid = true;
+        } else {
+          this.router.navigate(['events']);
+        }
+      })
     this.router.navigate(['user/profile']);
     this.toastr.success("Welcome, "+ formValue.userName);
   }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   template: '<nav-bar></nav-bar> <router-outlet></router-outlet>'
 })
 export class EventsAppComponent {
-  title = 'app';
+  constructor(private auth: AuthService) {
+
+  }
+
+  ngOnInit() {
+    this.auth.checkAuthenticationstatus();
+  }
 }
